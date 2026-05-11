@@ -103,6 +103,15 @@ See [CHANGELOG](CHANGELOG.md) for a full history of changes.
 
 ---
 
+## Inspiration
+
+This project has been developed based on and referenced by the "AL Language Tools" extension of Clip Dynamics. 
+- [AL Language Tools](https://marketplace.visualstudio.com/items?itemName=ClipDynamics.al-language-tools)
+
+The goal has been to evolve its original functionality to adapt it to current Business Central standards (2026) and improve the developer experience through smarter snippets and optimized translation management.
+
+---
+
 ## Acknowledgements
 
 Special thanks to **[Junpeng Jin](https://github.com/JJP00)** for his support and contributions during the development of this extension.

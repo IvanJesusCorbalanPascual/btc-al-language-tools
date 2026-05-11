@@ -1,12 +1,12 @@
 {
-  "name": "btc-translations",
+  "name": "btc-al-language-tools",
   "displayName": "BTC AL Language Tools",
   "publisher": "b1ba69f7-6dd3-606e-8aac-876e9d3d04c9",
   "description": "AL language tools for Business Central: XLIFF translation automation, professional code snippets and test codeunit generation.",
   "version": "1.0.0",
   "icon": "assets/logo.png",
   "license": "MIT",
-  "homepage": "https://github.com/IvanJesusCorbalanPascual/btc-al-language-tools",
+  "homepage": "https://github.com/IvanJesusCorbalanPascual/btc-al-language-tools#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/IvanJesusCorbalanPascual/btc-al-language-tools.git"
@@ -37,16 +37,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "btc-translations.generate",
-        "title": "BTC: Generar Traducciones XLIFF"
+        "command": "btc-al-language-tools.generate",
+        "title": "BTC: Generate XLIFF Translations"
       },
       {
-        "command": "btc-translations.initLanguages",
-        "title": "BTC: Configurar Idiomas de Traducción"
+        "command": "btc-al-language-tools.initLanguages",
+        "title": "BTC: Configure Translation Languages"
       },
       {
-        "command": "btc-translations.generateTest",
-        "title": "BTC: Generar Codeunit de Test"
+        "command": "btc-al-language-tools.generateTest",
+        "title": "BTC: Generate Test Codeunit"
       }
     ],
     "snippets": [

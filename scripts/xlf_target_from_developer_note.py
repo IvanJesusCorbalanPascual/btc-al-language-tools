@@ -47,9 +47,9 @@ LANGUAGE_MAP = {
 
 # Etiquetas más descriptivas para los idiomas soportados.
 LANGUAGE_LABELS = {
-    "es": "Español",
-    "fr": "Francés",
-    "de": "Alemán",
+    "es": "Spanish",
+    "fr": "French",
+    "de": "German",
 }
 
 # Dinámica de Idiomas
@@ -76,18 +76,18 @@ def load_language_config() -> tuple[dict, dict, dict]:
     # Si no existe el archivo, creamos uno por defecto con idiomas básicos.
     if not config_path:
         default_config = {
-            "es": {"note_code": "ESP", "bcp47": "es-ES", "label": "Español"},
-            "fr": {"note_code": "FRA", "bcp47": "fr-FR", "label": "Francés"},
-            "de": {"note_code": "DEU", "bcp47": "de-DE", "label": "Alemán"}
+            "es": {"note_code": "ESP", "bcp47": "es-ES", "label": "Spanish"},
+            "fr": {"note_code": "FRA", "bcp47": "fr-FR", "label": "French"},
+            "de": {"note_code": "DEU", "bcp47": "de-DE", "label": "German"}
         }
         config_path = cwd / ".vscode" / "languages.json"
         config_path.parent.mkdir(parents=True, exist_ok=True)
         try:
             with open(config_path, "w", encoding="utf-8") as f:
                 json.dump(default_config, f, indent=4, ensure_ascii=False)
-            print(f"INFO: Se ha creado el archivo de configuración por defecto: {config_path}")
+            print(f"INFO: Default configuration file created: {config_path}")
         except Exception as e:
-            print(f"Error al crear el archivo de configuración de idiomas 'languages.json': {e}", file=sys.stderr)
+            print(f"Error creating 'languages.json' configuration file: {e}", file=sys.stderr)
             sys.exit(1)
         
     with open(config_path, "r", encoding="utf-8") as f:
@@ -162,17 +162,17 @@ def _discover_base_g_xlf_files(translations_dir: Path) -> list[Path]:
 
 
 def _prompt_input_file(candidates: list[Path]) -> Path:
-    print("Ficheros .g.xlf base encontrados:")
+    print("Base .g.xlf files found:")
     for i, p in enumerate(candidates, start=1):
         print(f"  {i}) {p.name}")
-    choice = input(f"Seleccione 1-{len(candidates)} [1]: ").strip() or "1"
+    choice = input(f"Select 1-{len(candidates)} [1]: ").strip() or "1"
     try:
         idx = int(choice)
     except ValueError:
-        print("Opción no válida.", file=sys.stderr)
+        print("Invalid option.", file=sys.stderr)
         sys.exit(1)
     if idx < 1 or idx > len(candidates):
-        print("Opción fuera de rango.", file=sys.stderr)
+        print("Option out of range.", file=sys.stderr)
         sys.exit(1)
     return candidates[idx - 1]
 
@@ -210,8 +210,8 @@ def _resolve_input_path(
     candidates = _discover_base_g_xlf_files(translations_dir)
     if not candidates:
         print(
-            f"No se encontró ningún .g.xlf base en {translations_dir}. "
-            "Use --input o cree un fichero MiProyecto.g.xlf (no MiProyecto.de-DE.g.xlf).",
+            f"No base .g.xlf file found in {translations_dir}. "
+            "Use --input or create a MyProject.g.xlf file (not MyProject.de-DE.g.xlf).",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -249,14 +249,14 @@ def _default_translations_dir() -> Path:
         if r.is_dir():
             return r
     print(
-        "No se encontró ninguna carpeta Translations. Rutas probadas:",
+        "No Translations folder found. Tested paths:",
         file=sys.stderr,
     )
     for r in seen:
         print(f"  - {r}", file=sys.stderr)
     print(
-        "Indique la carpeta con -t / --translations-dir o ejecute el script "
-        "desde la raíz del proyecto (donde está la carpeta Translations).",
+        "Specify the folder with -t / --translations-dir or run the script "
+        "from the project root (where the Translations folder is located).",
         file=sys.stderr,
     )
     sys.exit(1)
@@ -410,12 +410,12 @@ def _process_single_lang(
     output_override: Path | None,
 ) -> None:
     out = output_override or _default_output_path(input_path, bcp47)
-    print(f"\nIdioma:   {label} ({note_code}= -> target-language {bcp47})")
-    print(f"  Salida: {out}")
+    print(f"\nLanguage: {label} ({note_code}= -> target-language {bcp47})")
+    print(f"  Output: {out}")
     updated, skipped = process_xlf(input_path, out, note_code, bcp47)
     print(
-        f"  Hecho:  {updated} <target> actualizados; "
-        f"{skipped} notas sin clave {note_code}= (omitidas)."
+        f"  Done:   {updated} <target> updated; "
+        f"{skipped} notes missing {note_code}= key (skipped)."
     )
 
 
@@ -467,14 +467,14 @@ def main() -> None:
 
     translations_dir = (args.translations_dir or _default_translations_dir()).resolve()
     if args.translations_dir is None:
-        print(f"Carpeta XLF: {translations_dir}")
+        print(f"XLF Folder: {translations_dir}")
         
     input_path = _resolve_input_path(args.input, translations_dir)
     if not input_path.is_file():
-        print(f"No se encuentra el fichero: {input_path}", file=sys.stderr)
+        print(f"File not found: {input_path}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Entrada:  {input_path}")
+    print(f"Input:    {input_path}")
     
     # Resto de la lógica del main...
     if args.lang:
@@ -483,13 +483,13 @@ def main() -> None:
         _process_single_lang(input_path, note_code, bcp47, label, args.output)
     else:
         if args.output:
-            print("AVISO: --output se ignora en modo automático. Use --lang para seleccionar un idioma.", file=sys.stderr)
+            print("WARNING: --output is ignored in automatic mode. Use --lang to select a language.", file=sys.stderr)
         detected_codes = _discover_note_codes(input_path)
         if not detected_codes:
-            print("No se encontró ningún código de idioma conocido.", file=sys.stderr)
+            print("No known language code found.", file=sys.stderr)
             sys.exit(1)
 
-        print(f"Idiomas detectados en las notas: {', '.join(detected_codes)}")
+        print(f"Languages detected in notes: {', '.join(detected_codes)}")
         for note_code in detected_codes:
             lang_key, bcp47, label = _NOTE_CODE_TO_LANG[note_code]
             _process_single_lang(input_path, note_code, bcp47, label, None)
