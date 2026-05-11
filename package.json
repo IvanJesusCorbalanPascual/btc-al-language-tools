@@ -1,14 +1,35 @@
 {
   "name": "btc-translations",
   "displayName": "BTC AL Language Tools",
-  "publisher": "IvanJCP",
-  "description": "Herramientas de lenguaje AL para BC: traducción XLIFF, snippets y generación de tests.",
+  "publisher": "b1ba69f7-6dd3-606e-8aac-876e9d3d04c9",
+  "description": "AL language tools for Business Central: XLIFF translation automation, professional code snippets and test codeunit generation.",
   "version": "1.0.0",
   "icon": "assets/logo.png",
+  "license": "MIT",
+  "homepage": "https://github.com/IvanJesusCorbalanPascual/btc-al-language-tools",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IvanJesusCorbalanPascual/btc-al-language-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IvanJesusCorbalanPascual/btc-al-language-tools/issues"
+  },
+  "keywords": [
+    "AL",
+    "Business Central",
+    "Dynamics 365",
+    "XLIFF",
+    "translation",
+    "snippets",
+    "NAV",
+    "ERP"
+  ],
   "engines": {
     "vscode": "^1.93.0"
   },
   "categories": [
+    "Programming Languages",
+    "Snippets",
     "Other"
   ],
   "activationEvents": [],

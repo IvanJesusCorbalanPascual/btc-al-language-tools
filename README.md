@@ -1,37 +1,108 @@
 # BTC AL Language Tools
 
-Herramienta interna para automatizar la generación de archivos de traducción XLIFF en proyectos de Microsoft Dynamics 365 Business Central.
+**Productivity tools for Microsoft Dynamics 365 Business Central development in VS Code.**
 
-## ¿Qué hace esta extensión?
-Esta extensión lee los archivos de traducción base (`.g.xlf`) de tu proyecto y rellena automáticamente las etiquetas `<target>` basándose en las notas de desarrollador (Developer Notes) que dejas en el código AL.
-
-## ¿Cómo utilizarla?
-
-1. **Añade notas en tu código AL:** 
-   En los *labels* o textos de tu proyecto de Business Central, añade el texto traducido dentro de una etiqueta de comentario usando el código del idioma (`ESP=`, `DEU=`, `FRA=`, etc.).
-   *Ejemplo:*
-   ```al
-   Caption = 'My Field', Comment = 'ESP="Mi Campo", DEU="Mein Feld"';
-   ```
-
-2. **Genera el archivo base (opcional):**
-   Asegúrate de haber compilado tu proyecto de Business Central para que se genere el archivo `TuProyecto.g.xlf` en la carpeta `Translations/`.
-
-3. **Ejecuta el comando de traducción:**
-   - Abre la paleta de comandos de VS Code (`Ctrl + Shift + P` en Windows/Linux o `Cmd + Shift + P` en Mac).
-   - Escribe y selecciona: **`BTC: Generar Traducciones XLIFF`**.
-
-4. **Revisa el resultado:**
-   - La extensión procesará el archivo base y generará automáticamente un archivo para cada idioma detectado (por ejemplo, `TuProyecto.es-ES.g.xlf`, `TuProyecto.de-DE.g.xlf`).
-   - Se abrirá automáticamente el panel de "Salida" (Output) en la parte inferior de tu pantalla mostrándote un resumen de los idiomas encontrados y cuántas etiquetas se han traducido o se han omitido.
-
-## Notas
-- Para que funcione correctamente, el proyecto debe tener una carpeta llamada `Translations` con el archivo `.g.xlf` base dentro.
-- Es necesario tener **Python** instalado en el sistema, ya que la extensión utiliza un script de Python en segundo plano para procesar rápidamente el XML.
-- **Idiomas personalizados:** Puedes crear un archivo `languages.json` en la raíz de tu proyecto o dentro de la carpeta `Translations/` para definir tus propios idiomas, sobreescribiendo la configuración por defecto de la extensión.
+Automate XLIFF translations, generate AL test codeunits and use professional code snippets — all without leaving the editor.
 
 ---
 
-## Agradecimientos
+## Features
 
-Un agradecimiento especial a **[Junpeng Jin](https://github.com/JJP00)**, compañero y colaborador, por su apoyo y aportaciones durante el desarrollo de esta extensión.
+### 🌍 XLIFF Translation Automation
+
+Automatically fills `<target>` tags in your `.g.xlf` translation files by reading **Developer Notes** embedded directly in your AL code.
+
+**How it works:**
+
+1. Add translations in your AL labels using language codes in the `Comment` field:
+   ```al
+   Caption = 'My Field', Comment = 'ESP="Mi Campo", DEU="Mein Feld", FRA="Mon Champ"';
+   ```
+
+2. Run **`BTC: Generar Traducciones XLIFF`** from the Command Palette (`Ctrl+Shift+P`).
+
+3. The extension processes your `.g.xlf` base file and generates one translated file per language (e.g. `MyProject.es-ES.xlf`, `MyProject.de-DE.xlf`).
+
+4. An **Output** panel shows a summary of languages detected and translations applied.
+
+---
+
+### ⚙️ Per-Project Language Configuration
+
+Run **`BTC: Configurar Idiomas de Traducción`** to create a `languages.json` file inside your project's `.vscode/` folder.
+
+This file lets you define which languages to target, fully customizable per project:
+
+```json
+{
+    "es": { "note_code": "ESP", "bcp47": "es-ES", "label": "Español" },
+    "fr": { "note_code": "FRA", "bcp47": "fr-FR", "label": "Francés" },
+    "de": { "note_code": "DEU", "bcp47": "de-DE", "label": "Alemán" }
+}
+```
+
+---
+
+### 🧪 AL Test Codeunit Generator
+
+Open any `.al` file and run **`BTC: Generar Codeunit de Test`** to instantly scaffold a test codeunit following the standard `[SCENARIO]/[GIVEN]/[WHEN]/[THEN]` pattern:
+
+```al
+codeunit 0 "MyObjectTest"
+{
+    Subtype = Test;
+
+    [Test]
+    procedure TestPageVisibility()
+    begin
+        // [SCENARIO] Check behavior of Page "My Object"
+        // [GIVEN] Initial preconditions
+        // [WHEN] Action is performed
+        // [THEN] Expected result
+    end;
+}
+```
+
+---
+
+### ✂️ AL Snippets
+
+A professional snippet library for Business Central development, available in all `.al` files. Covers:
+
+- Table & TableExtension patterns
+- Page & PageExtension patterns
+- Codeunit skeletons
+- Test patterns with `[Test]` and `[HandlerFunctions]`
+
+---
+
+## Requirements
+
+- **VS Code** `1.93.0` or higher
+- **Python 3.x** must be installed and available in your system `PATH` (used internally for XML processing)
+- A Business Central AL project with the `TranslationFile` feature enabled in `app.json`
+
+---
+
+## Extension Settings
+
+This extension does not contribute VS Code settings. Configuration is managed via the `languages.json` file generated inside your project's `.vscode/` folder.
+
+---
+
+## Known Issues
+
+- The translation command requires the project to be compiled first so that the `.g.xlf` base file exists in the `Translations/` folder.
+- Python must be accessible from the terminal for the translation script to run.
+
+---
+
+## Release Notes
+
+See [CHANGELOG](CHANGELOG.md) for a full history of changes.
+
+---
+
+## Acknowledgements
+
+Special thanks to **[Junpeng Jin](https://github.com/JJP00)** for his support and contributions during the development of this extension.

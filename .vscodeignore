@@ -9,3 +9,10 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+.git/**
+.gitignore
+.alpackages/**
+.altestrunner/**
+.snapshots/**
+*.vsix
+node_modules/**
