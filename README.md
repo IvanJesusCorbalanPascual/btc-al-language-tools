@@ -34,4 +34,4 @@ Esta extensión lee los archivos de traducción base (`.g.xlf`) de tu proyecto y
 
 ## Agradecimientos
 
-Un agradecimiento especial a **Junpeng Jin**, compañero y colaborador, por su apoyo y aportaciones durante el desarrollo de esta extensión.
+Un agradecimiento especial a **[Junpeng Jin](https://github.com/JJP00)**, compañero y colaborador, por su apoyo y aportaciones durante el desarrollo de esta extensión.
