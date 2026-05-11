@@ -1,0 +1,17 @@
+{
+    "es": {
+        "note_code": "ESP",
+        "bcp47": "es-ES",
+        "label": "Español"
+    },
+    "fr": {
+        "note_code": "FRA",
+        "bcp47": "fr-FR",
+        "label": "Francés"
+    },
+    "de": {
+        "note_code": "DEU",
+        "bcp47": "de-DE",
+        "label": "Alemán"
+    }
+}

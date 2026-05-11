@@ -21,3 +21,8 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+out
+dist
+node_modules
+.vscode-test/
+*.vsix

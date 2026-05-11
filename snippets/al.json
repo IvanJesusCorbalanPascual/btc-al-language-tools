@@ -1,0 +1,30 @@
+{
+    "tcaptionWithComment": {
+        "prefix": "tcaptionWithComment",
+        "body": [
+            "Caption = '${1:English Text}', Comment = '${2:ESP}=\"${3:Text in Spanish}\"';"
+        ],
+        "description": "Inserts a Caption property, with the comment section (AL Tools)."
+    },
+    "tToolTipWithComment": {
+        "prefix": "tToolTipWithComment",
+        "body": [
+            "ToolTip = '${1:English Text}', Comment = '${2:ESP}=\"${3:Text in Spanish}\"';"
+        ],
+        "description": "Inserts a ToolTip property, with the comment section (AL Tools)."
+    },
+    "tLabelWithComment": {
+        "prefix": "tLabelWithComment",
+        "body": [
+            "${1:MyLabel}: Label '${2:English Text}', Comment = '${3:ESP}=\"${4:Text in Spanish}\"';"
+        ],
+        "description": "Inserts a Label variable declaration with the comment section (AL Tools). Format: VarName: Label 'Text', Comment = '...';"
+    },
+    "tCommentWithLanguage": {
+        "prefix": "tCommentWithLanguage",
+        "body": [
+            "Comment = '${1:ESP}=\"${2:Text in Spanish}\"';"
+        ],
+        "description": "Inserts the comment section property for translations (AL Tools)."
+    }
+}
